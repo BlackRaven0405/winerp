@@ -239,7 +239,7 @@ class Client:
     ):
         future = loop.create_future()
         self.listeners[_uuid] = future
-        return asyncio.wait_for(future, timeout, loop=loop)
+        return asyncio.wait_for(future, timeout)
 
     async def request(
         self,
