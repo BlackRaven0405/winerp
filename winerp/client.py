@@ -459,12 +459,12 @@ class Client:
                     return
                 logger.info("Fulfilling request @ route: %s" % message.route)
                 asyncio.create_task(self._fulfill_request(message))
-                self._dispatch_event('winerp_request')
+                self._dispatch_event('winerp_request', message.data)
             
             elif message.type.response:
                 logger.info("Received a response from server @ uuid: %s" % message.uuid)
                 asyncio.create_task(self._dispatch(message))
-                self._dispatch_event('winerp_response')
+                self._dispatch_event('winerp_response', message.data)
 
             elif message.type.error:
                 if message.data == "Already authorized.":
