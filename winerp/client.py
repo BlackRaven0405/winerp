@@ -459,7 +459,7 @@ class Client:
                     return
                 logger.info("Fulfilling request @ route: %s" % message.route)
                 asyncio.create_task(self._fulfill_request(message))
-                self._dispatch_event('winerp_request', message.data)
+                self._dispatch_event('winerp_request', message.route, message.data)
             
             elif message.type.response:
                 logger.info("Received a response from server @ uuid: %s" % message.uuid)
